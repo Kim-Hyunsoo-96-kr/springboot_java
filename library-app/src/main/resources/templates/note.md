@@ -110,4 +110,40 @@
 * username : db 계정 정보
 * password : db 계정 정보
 * driver-class-name : db에 접근할 때 사용할 프로그램을 의미
+
+### Ch17 - 좋은코드(Clean code)는 왜 중요한가
+* 코드는 요구사항을 표현하는 언어이다.
+* 하나의 클래스가 너무 많은 코드를 가지고있으면
+  * 그 클래스를 여러명이 수정할 수 없다.
+  * 그 클래스를 읽고, 이해하는 것이 너무 어렵다.
+  * 그 함수의 어느 부분을 수정하더라도 함수 전체에 영향을 미칠 수 있기 때문에 함부로 건들 수 없게 된다.
+  * 너무 큰 기능이기 때문에 테스트도 힘들다.
+  * 종합적으로 유지보수성이 매우 떨어지게 된다.
+
+### Ch18 - Controller를 3단 분리하기 - service, repository
+* Controller의 함수 1개가 하고 있던 역할
+  * API의 진입 지점으로써 HTTP Body를 객체로 변환하고 있다. - controller
+  * 현재 유저가 있는지, 없는지 등을 확인하고 예외 처리를 해준다. - service
+  * SQL을 사용해 실제 DB와의 통신을 담당한다. - repository
+* 이러한 구조를 Layered Architecture 라고 한다.
+
+### Ch19 - UserController와 스프링 컨테이너
+* 누가 UserController를 인스턴스화 하고 있는가?
+* UserController는 JdbcTemplate을 의존하고 있는데, 누가 주입해주는가?
+* @RestController 어노테이션이 해결해준다.
+* @RestController는 UserController 클래스를 스프링 빈으로 등록시킨다.
+* 스프링 빈이란?
+  * 스프링 부트로 만든 서버를 실행시키면, 스프링 서버 내부에 거대한 컨테이너를 만들게 된다.
+  * 컨테이너 안에는 클래스가 들어가게 된다.
+  * 이때, 다양한 정보도 함께 들어있고, 인스턴스화도 이루어진다.
+  * 스프링 컨테이너 안으로 들어간 클래스를 스프링 빈이라고 한다.
+  * UserController가 의존하고 있는 JdbcTemplate도 스프링 빈으로 등록되어 있다.
+  * JdbcTempalte은 누가 스프링 빈으로 등록해주는가?
+  * 우리가 가져온 Dependency가 등록해주고 있다.
+  * 스프링 컨테이너는 필요한 클래스를 연결해준다
+* UserRepository는 JdbcTemplate을 왜 가져오지 못할까?
+  * JdbcTemplate을 가져오려면 UserRepository가 스프링 빈이어야 하는데, UserRepository는 스프일 빈이 아니다.
+* 왜 굳이 스프링 컨테이너를 쓰는것일까? 그냥 new 연산자를 쓰면 안되나?
+
+### Ch20 - 왜 스프링 컨테이너를 사용할까?
 * 
