@@ -3,17 +3,18 @@ package com.group.libraryapp.controller.user;
 import com.group.libraryapp.dto.user.request.UserCreateRequest;
 import com.group.libraryapp.dto.user.request.UserUpdateRequest;
 import com.group.libraryapp.dto.user.response.UserResponse;
-import com.group.libraryapp.service.user.UserService;
+import com.group.libraryapp.service.user.UserServiceV1;
+import com.group.libraryapp.service.user.UserServiceV2;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class UserController {
-    private final UserService userService;
+    private final UserServiceV2 userService;
 
-    public UserController(UserService userService){
-        this.userService = userService;
+    public UserController(UserServiceV2 userServiceV2){
+        this.userService = userServiceV2;
     }
 
     @PostMapping("/user")
@@ -36,7 +37,7 @@ public class UserController {
      */
     @GetMapping("/user")
     public List<UserResponse> getUsers(){
-        return userService.getUser();
+        return userService.getUsers();
     }
 
     /** 유저 정보 update API spec
@@ -67,4 +68,3 @@ public class UserController {
     }
 
 }
-

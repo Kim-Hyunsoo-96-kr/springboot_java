@@ -152,36 +152,4 @@
 * Spring Data JPA를 이용해 데이터를 생성, 조회, 수정, 삭제할 수 있다.
 * 트랜잭션이 왜 필요한지 이해하고, 스프링에서 트랜잭션을 제어하는 방법을 익힌다.
 * 영속성 컨텍스트와 트랜잭션의 관계를 이해하고, 영속성 컨텍스트의 특징을 알아본다.
-
-### Ch26 - Spring Data JPA를 이용해 다양한 쿼리 작성하기
-* By 앞에 들어갈 수 있는 구절들
-  * find : 1건을 가져온다. 반환 탕비은 객체가 될 수도 있고, Optional<타입>이 될 수도 있다.
-  * findAll : 쿼리의 결과물이 N개인 경우 사용. List<타입> 반환
-  * exists : 쿼리 결과가 존재하는지 확인. 반환타입은 boolean
-  * count : SQL의 결과 개수를 센다. 반환 타입은 long이다
-* By 뒤에 들어갈 수 있는 구절들
-  * 각 구절은 And 나 Or로 조합할 수도 있다.
-  * GreaterThan : 초과
-  * GreaterThanEqual : 이상
-  * LessThan : 미만
-  * LessThanEqual : 이하
-  * Between : 사이에
-  * StartsWith : ~로 시작하는
-  * EndsWith : ~로 끝나는
-
-### Ch27 - 트랜잭션 이론편
-* 트랜잭션이란 - 쪼갤 수 없는 업무의 최소 단위 = 모두다 성공시키거나, 모두다 실패시키거나
-* 트랜잭션 시작하기 sql : start transaction
-* 트랜잭션 정상 종료하기 sql : commit;
-* 트랜잭션 실패 처리하기 sql : rollback;
-
-### Ch28 - 트랜잭션 적용과 영속성 컨텍스트
-* @Transactional
-* IOException과 같은 Checked Exception은 롤백이 일어나지 않는다.
-* 영속성 컨텍스트 : 테이블과 메핑된 Entity 객체를 관리/보관하는 역할
-* 스프링에서는 트랜잭션을 사용하면 영속성 컨텍스트가 생겨나고, 트랜잭션이 종료되면 영속성 컨텍스트가 종료된다.
-* 영속성 컨텍스트의 특수 능력 4가지
-  * 변경 감지(Dirty check) - 영속성 컨텍스트 안에서 불러와진 Entity는 명시적으로 save하지 않더라도, 변경을 감지해 자동으로 저장된다.
-  * 쓰기 지연 - DB의 insert/update/delete sql을 바로 날리는 것이 아니라, 트랜잭션이 commit될 때 모아서 한 번만 날린다.
-  * 1차 캐싱 - ID를 기준으로 Entity를 기억한다.
-  * 
+* 
